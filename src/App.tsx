@@ -1,7 +1,15 @@
+import CvNav from './cv/CvNav'
 import CvPage from './cv/CvPage'
 import { cvData } from './cv/cvData'
 
 export default function App() {
-  return <CvPage data={cvData} />
+  return (
+    <div className="app-layout">
+      <CvNav />
+      <main className="app-main">
+        <CvPage data={cvData} />
+      </main>
+    </div>
+  )
 }
 

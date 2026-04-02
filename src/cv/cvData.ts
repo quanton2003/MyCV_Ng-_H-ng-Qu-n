@@ -19,9 +19,12 @@ export type CvData = {
     name: string
     title: string
     location: string
-    phone: string
     email: string
     github: string
+    facebook: string
+    youtube: string
+    /** Số Zalo — dùng cho liên kết gọi tel: */
+    zaloPhone: string
   }
   summary: string
   skills: CvSkillGroup[]
@@ -39,12 +42,14 @@ export type CvData = {
 // Bạn có thể chỉnh lại email/số điện thoại/dates cho khớp 100%.
 export const cvData: CvData = {
   header: {
-    name: 'NGÔ HỒNG QUÂN',
+    name: 'Ngô Hồng Quân',
     title: 'Backend Developer',
     location: 'Hanoi, Vietnam',
-    phone: '0343714165',
-    email: 'quannyb@gmail.com',
+    email: 'quanvyyyb@gmail.com',
     github: 'https://github.com/quanton2003',
+    facebook: 'https://www.facebook.com/nhin.cai.ccll',
+    youtube: 'https://www.youtube.com/@ngohongquan4962',
+    zaloPhone: '0343147165',
   },
   summary:
     'Làm việc chăm chỉ trong một môi trường công nghệ cao. Kinh nghiệm phát triển ứng dụng Full Stack sử dụng MERN Stack (MongoDB, Express.js, React.js, Node.js). Có kinh nghiệm xây dựng FrontEnd API, hệ thống xác thực người dùng và quản lý dữ liệu. Đam mê học hỏi và phát triển các dự án thực tế.',
