@@ -54,9 +54,9 @@ export const cvData: CvData = {
   summary:
     'Làm việc chăm chỉ trong một môi trường công nghệ cao. Kinh nghiệm phát triển ứng dụng Full Stack sử dụng MERN Stack (MongoDB, Express.js, React.js, Node.js). Có kinh nghiệm xây dựng FrontEnd API, hệ thống xác thực người dùng và quản lý dữ liệu. Đam mê học hỏi và phát triển các dự án thực tế.',
   skills: [
-    { label: 'LANGUAGES', items: ['JavaScript', 'HTML', 'CSS'] },
+    { label: 'LANGUAGES', items: ['JavaScript', 'PHP', 'HTML', 'CSS'] },
     { label: 'FRONTEND', items: ['React.js', 'Next.js', 'Redux Toolkit', 'Bootstrap'] },
-    { label: 'BACKEND', items: ['Node.js', 'Express.js'] },
+    { label: 'BACKEND', items: ['Node.js', 'Express.js', 'Laravel'] },
     { label: 'DATABASES', items: ['MongoDB', 'MySQL', 'PostgreSQL'] },
     { label: 'TOOLS', items: ['Git', 'GitHub', 'GitLab', 'Deployment (Vercel/Render)'] },
     { label: 'OTHER', items: ['REST API Design', 'JWT Authentication', 'API Integration'] },
