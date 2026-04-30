@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import CvNav from './cv/CvNav'
 import CvPage from './cv/CvPage'
 import { cvData } from './cv/cvData'
@@ -9,6 +10,7 @@ export default function App() {
       <main className="app-main">
         <CvPage data={cvData} />
       </main>
+      <Analytics />
     </div>
   )
 }
