@@ -115,10 +115,6 @@ export default async function handler(req, res) {
       `visited=true; Max-Age=${ONE_DAY_SECONDS}; Path=/; HttpOnly; SameSite=Lax; Secure`,
     )
 
-    if (hasVisited) {
-      return res.status(200).json({ ok: true, visitor: 'returning', notified: false })
-    }
-
     const forwardedFor = getHeader(req, 'x-forwarded-for')
     const ip = forwardedFor.split(',')[0]?.trim() || 'unknown'
     const userAgent = getHeader(req, 'user-agent')
@@ -130,7 +126,7 @@ export default async function handler(req, res) {
     const message = [
       '🚀 CÓ NGƯỜI XEM CV!',
       '',
-      '👤 NGƯỜI MỚI',
+      hasVisited ? '👤 QUAY LẠI' : '👤 NGƯỜI MỚI',
       `🌍 Quốc gia: ${country}`,
       `🌐 IP: ${ip}`,
       `📱 Thiết bị: ${deviceInfo}`,
@@ -140,7 +136,11 @@ export default async function handler(req, res) {
 
     await sendTelegramMessage(message)
 
-    return res.status(200).json({ ok: true, visitor: 'new', notified: true })
+    return res.status(200).json({
+      ok: true,
+      visitor: hasVisited ? 'returning' : 'new',
+      notified: true,
+    })
   } catch (error) {
     console.error('Visitor tracking failed:', error)
     return res.status(200).json({ ok: false, notified: false })
