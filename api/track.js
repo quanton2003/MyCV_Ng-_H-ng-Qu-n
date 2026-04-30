@@ -38,6 +38,50 @@ function getSource(req) {
   return source.slice(0, 120)
 }
 
+function getBrowser(userAgent = '') {
+  if (!userAgent) {
+    return ''
+  }
+
+  if (userAgent.includes('Edg') || userAgent.includes('Edge')) {
+    return 'Edge'
+  }
+
+  if (userAgent.includes('Firefox')) {
+    return 'Firefox'
+  }
+
+  if (userAgent.includes('Chrome') || userAgent.includes('CriOS')) {
+    return 'Chrome'
+  }
+
+  if (userAgent.includes('Safari')) {
+    return 'Safari'
+  }
+
+  return ''
+}
+
+function getDeviceInfo(userAgent = '') {
+  let device = 'Thiết bị khác'
+
+  if (userAgent.includes('Android')) {
+    device = 'Android 📱'
+  } else if (userAgent.includes('iPhone')) {
+    device = 'iPhone 📱'
+  } else if (userAgent.includes('iPad')) {
+    device = 'iPad 📲'
+  } else if (userAgent.includes('Windows')) {
+    device = 'Windows PC 💻'
+  } else if (userAgent.includes('Mac')) {
+    device = 'MacOS 💻'
+  }
+
+  const browser = getBrowser(userAgent)
+
+  return browser ? `${device} (${browser})` : device
+}
+
 async function sendTelegramMessage(text) {
   const response = await fetch(TELEGRAM_ENDPOINT, {
     method: 'POST',
@@ -77,7 +121,8 @@ export default async function handler(req, res) {
 
     const forwardedFor = getHeader(req, 'x-forwarded-for')
     const ip = forwardedFor.split(',')[0]?.trim() || 'unknown'
-    const userAgent = getHeader(req, 'user-agent') || 'unknown'
+    const userAgent = getHeader(req, 'user-agent')
+    const deviceInfo = getDeviceInfo(userAgent)
     const country = getHeader(req, 'x-vercel-ip-country') || 'unknown'
     const source = getSource(req)
     const timestamp = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
@@ -88,7 +133,7 @@ export default async function handler(req, res) {
       '👤 NGƯỜI MỚI',
       `🌍 Quốc gia: ${country}`,
       `🌐 IP: ${ip}`,
-      `📱 Thiết bị: ${userAgent}`,
+      `📱 Thiết bị: ${deviceInfo}`,
       `🔗 Nguồn: ${source}`,
       `⏰ Thời gian: ${timestamp}`,
     ].join('\n')
