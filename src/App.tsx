@@ -15,7 +15,7 @@ export default function App() {
         return
       }
 
-      const source = new URLSearchParams(window.location.search).get('from') || 'direct'
+      const source = new URLSearchParams(window.location.search).get('from') || 'trực tiếp'
 
       fetch(`/api/track?from=${encodeURIComponent(source)}`, {
         method: 'POST',

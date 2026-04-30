@@ -33,7 +33,7 @@ function parseCookies(cookieHeader = '') {
 
 function getSource(req) {
   const rawFrom = Array.isArray(req.query?.from) ? req.query.from[0] : req.query?.from
-  const source = typeof rawFrom === 'string' && rawFrom.trim() ? rawFrom.trim() : 'direct'
+  const source = typeof rawFrom === 'string' && rawFrom.trim() ? rawFrom.trim() : 'trực tiếp'
 
   return source.slice(0, 120)
 }
@@ -80,17 +80,17 @@ export default async function handler(req, res) {
     const userAgent = getHeader(req, 'user-agent') || 'unknown'
     const country = getHeader(req, 'x-vercel-ip-country') || 'unknown'
     const source = getSource(req)
-    const timestamp = new Date().toISOString()
+    const timestamp = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
 
     const message = [
-      '🚀 CV VIEW ALERT',
+      '🚀 CÓ NGƯỜI XEM CV!',
       '',
-      '👤 NEW USER',
-      `🌍 Country: ${country}`,
+      '👤 NGƯỜI MỚI',
+      `🌍 Quốc gia: ${country}`,
       `🌐 IP: ${ip}`,
-      `📱 Device: ${userAgent}`,
-      `🔗 Source: ${source}`,
-      `⏰ Time: ${timestamp}`,
+      `📱 Thiết bị: ${userAgent}`,
+      `🔗 Nguồn: ${source}`,
+      `⏰ Thời gian: ${timestamp}`,
     ].join('\n')
 
     await sendTelegramMessage(message)
