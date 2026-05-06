@@ -3,6 +3,11 @@
   --text: #111827;
   --muted: #6b7280;
   --muted2: #9ca3af;
+  --accent: #2563eb;
+  --accent-weak: #eff6ff;
+  --accent-border: #bfdbfe;
+  --success: #047857;
+  --success-weak: #ecfdf5;
   --nav-h: 56px;
 }
 
@@ -140,6 +145,7 @@ body {
   border: 1px solid #f3f4f6;
   background: #ffffff;
   border-radius: 8px;
+  border-top: 5px solid var(--accent);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.35),
     0 2px 8px rgba(0, 0, 0, 0.2);
@@ -165,6 +171,7 @@ body {
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 0.2px;
+  color: #0f172a;
 }
 
 .cv-header-right {
@@ -174,9 +181,16 @@ body {
 }
 
 .cv-profession {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-weak);
   font-size: 12px;
   font-weight: 700;
-  color: var(--text);
+  color: #1d4ed8;
 }
 
 .cv-contact {
@@ -197,9 +211,9 @@ body {
 }
 
 .cv-link {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px dotted var(--border);
+  border-bottom: 1px dotted var(--accent-border);
 }
 
 .cv-social {
@@ -229,9 +243,9 @@ body {
 }
 
 .cv-social-link:hover {
-  color: var(--text);
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  color: var(--accent);
+  background: var(--accent-weak);
+  border-color: var(--accent-border);
   transform: translateY(-1px);
 }
 
@@ -246,10 +260,13 @@ body {
 }
 
 .cv-section {
-  margin-top: 14px;
+  margin-top: 18px;
 }
 
 .cv-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 8px;
   padding-bottom: 6px;
   font-size: 13px;
@@ -257,6 +274,16 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.4px;
   border-bottom: 1px solid var(--border);
+  color: #0f172a;
+}
+
+.cv-section-title::before {
+  content: '';
+  width: 5px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: 0 0 auto;
 }
 
 .cv-paragraph {
@@ -268,14 +295,18 @@ body {
 .cv-skills {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .cv-skill-group {
   display: flex;
   gap: 10px;
-  align-items: baseline;
+  align-items: flex-start;
   min-width: 0;
+  padding: 7px 9px;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  background: #fbfdff;
 }
 
 .cv-skill-label {
@@ -283,7 +314,7 @@ body {
   flex-shrink: 0;
   font-size: 11px;
   font-weight: 800;
-  color: var(--text);
+  color: var(--accent);
   text-transform: uppercase;
 }
 
@@ -297,7 +328,33 @@ body {
 .cv-timeline {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+  position: relative;
+  margin-left: 5px;
+  padding-left: 18px;
+  border-left: 1px solid var(--accent-border);
+}
+
+.cv-timeline-item {
+  position: relative;
+  padding: 10px 12px;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+}
+
+.cv-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 15px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-border);
 }
 
 .cv-item-top {
@@ -311,11 +368,18 @@ body {
 .cv-item-title {
   font-size: 12.8px;
   font-weight: 800;
+  color: #0f172a;
 }
 
 .cv-item-date {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--success-weak);
   font-size: 11px;
-  color: var(--muted);
+  font-weight: 700;
+  color: var(--success);
   white-space: normal;
 }
 
@@ -331,10 +395,15 @@ body {
   line-height: 1.45;
 }
 
+.cv-bullets li::marker {
+  color: var(--accent);
+}
+
 .cv-education-major {
   margin-top: 6px;
   font-size: 12.2px;
   font-weight: 700;
+  color: #0f172a;
 }
 
 .cv-education-gpa {

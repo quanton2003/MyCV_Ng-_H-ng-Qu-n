@@ -55,7 +55,6 @@ function IconZaloCall({ className }: { className?: string }) {
   )
 }
 
-/** Chuẩn hóa số VN 0xxxxxxxxx -> +84... cho tel: */
 function toTelHref(vnPhone: string): string {
   const digits = vnPhone.replace(/\D/g, '')
   if (digits.startsWith('84')) return `tel:+${digits}`
@@ -88,7 +87,7 @@ export default function CvPage({ data }: { data: CvData }) {
             </a>
           </div>
 
-          <div className="cv-social" role="group" aria-label="Liên hệ & mạng xã hội">
+          <div className="cv-social" role="group" aria-label="Liên hệ và mạng xã hội">
             <a
               className="cv-social-link"
               href={`mailto:${data.header.email}`}
@@ -120,7 +119,7 @@ export default function CvPage({ data }: { data: CvData }) {
               href={data.header.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub — quanton2003"
+              aria-label="GitHub - quanton2003"
               title="GitHub"
             >
               <IconGitHub className="cv-social-icon" />
@@ -205,7 +204,15 @@ export default function CvPage({ data }: { data: CvData }) {
           <div className="cv-education-gpa">{data.education.gpa}</div>
         </div>
       </section>
+
+      <section className="cv-section" id="section-soft-skills">
+        <SectionTitle>KỸ NĂNG MỀM</SectionTitle>
+        <ul className="cv-bullets">
+          {data.softSkills.map((skill) => (
+            <li key={skill}>{skill}</li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }
-

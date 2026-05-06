@@ -7,6 +7,7 @@ const NAV_ORDER = [
   'section-experience',
   'section-projects',
   'section-education',
+  'section-soft-skills',
 ] as const
 
 const NAV_ITEMS: { id: (typeof NAV_ORDER)[number]; label: string }[] = [
@@ -16,6 +17,7 @@ const NAV_ITEMS: { id: (typeof NAV_ORDER)[number]; label: string }[] = [
   { id: 'section-experience', label: 'Kinh nghiệm' },
   { id: 'section-projects', label: 'Dự án' },
   { id: 'section-education', label: 'Học vấn' },
+  { id: 'section-soft-skills', label: 'Kỹ năng mềm' },
 ]
 
 const NAV_HEIGHT = 56
@@ -59,7 +61,7 @@ export default function CvNav() {
   return (
     <nav className="cv-nav" aria-label="Điều hướng CV">
       <div className="cv-nav-inner">
-        <a className="cv-nav-brand" href="#cv" aria-label="Ngô Hồng Quân — về đầu trang">
+        <a className="cv-nav-brand" href="#cv" aria-label="Ngô Hồng Quân - về đầu trang">
           <img
             className="cv-nav-logo"
             src="/favicon.png?v=8"
