@@ -1,4 +1,5 @@
-import type { CvData } from './cvData'
+import type { ReactNode } from 'react'
+import type { CvData, CvLabels } from './cvData'
 
 function IconGitHub({ className }: { className?: string }) {
   return (
@@ -66,7 +67,37 @@ function SectionTitle({ children }: { children: string }) {
   return <h2 className="cv-section-title">{children}</h2>
 }
 
-export default function CvPage({ data }: { data: CvData }) {
+function renderLinkedText(text: string): ReactNode[] {
+  const urlPattern = /(https?:\/\/[^\s|]+)/g
+
+  return text.split(urlPattern).map((part, index) => {
+    if (!urlPattern.test(part)) return part
+
+    return (
+      <a
+        className="cv-link"
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        key={`${part}-${index}`}
+      >
+        {part}
+      </a>
+    )
+  })
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="cv-bullets">
+      {items.map((item) => (
+        <li key={item}>{renderLinkedText(item)}</li>
+      ))}
+    </ul>
+  )
+}
+
+export default function CvPage({ data, labels }: { data: CvData; labels: CvLabels }) {
   return (
     <div className="cv-page" id="cv">
       <header className="cv-header">
@@ -87,11 +118,11 @@ export default function CvPage({ data }: { data: CvData }) {
             </a>
           </div>
 
-          <div className="cv-social" role="group" aria-label="Liên hệ và mạng xã hội">
+          <div className="cv-social" role="group" aria-label={labels.socialAria}>
             <a
               className="cv-social-link"
               href={`mailto:${data.header.email}`}
-              aria-label={`Gửi email tới ${data.header.email}`}
+              aria-label={`${labels.emailAria} ${data.header.email}`}
               title="Email"
             >
               <IconMail className="cv-social-icon" />
@@ -101,7 +132,7 @@ export default function CvPage({ data }: { data: CvData }) {
               href={data.header.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Kênh YouTube"
+              aria-label={labels.youtubeAria}
               title="YouTube"
             >
               <IconYouTube className="cv-social-icon" />
@@ -109,8 +140,8 @@ export default function CvPage({ data }: { data: CvData }) {
             <a
               className="cv-social-link"
               href={toTelHref(data.header.zaloPhone)}
-              aria-label={`Gọi Zalo ${data.header.zaloPhone}`}
-              title="Gọi Zalo"
+              aria-label={`${labels.zaloAria} ${data.header.zaloPhone}`}
+              title={labels.zaloTitle}
             >
               <IconZaloCall className="cv-social-icon" />
             </a>
@@ -139,12 +170,12 @@ export default function CvPage({ data }: { data: CvData }) {
       </header>
 
       <section className="cv-section" id="section-summary">
-        <SectionTitle>TÓM TẮT BẢN THÂN</SectionTitle>
+        <SectionTitle>{labels.sections.summary}</SectionTitle>
         <p className="cv-paragraph">{data.summary}</p>
       </section>
 
       <section className="cv-section" id="section-skills">
-        <SectionTitle>KỸ NĂNG</SectionTitle>
+        <SectionTitle>{labels.sections.skills}</SectionTitle>
         <div className="cv-skills">
           {data.skills.map((group) => (
             <div className="cv-skill-group" key={group.label}>
@@ -156,7 +187,7 @@ export default function CvPage({ data }: { data: CvData }) {
       </section>
 
       <section className="cv-section" id="section-experience">
-        <SectionTitle>KINH NGHIỆM LÀM VIỆC</SectionTitle>
+        <SectionTitle>{labels.sections.experience}</SectionTitle>
         <div className="cv-timeline">
           {data.experience.map((item) => (
             <article className="cv-timeline-item" key={item.title}>
@@ -164,18 +195,14 @@ export default function CvPage({ data }: { data: CvData }) {
                 <div className="cv-item-title">{item.title}</div>
                 <div className="cv-item-date">{item.date}</div>
               </div>
-              <ul className="cv-bullets">
-                {item.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
+              <BulletList items={item.bullets} />
             </article>
           ))}
         </div>
       </section>
 
       <section className="cv-section" id="section-projects">
-        <SectionTitle>DỰ ÁN CÁ NHÂN</SectionTitle>
+        <SectionTitle>{labels.sections.projects}</SectionTitle>
         <div className="cv-timeline">
           {data.projects.map((item) => (
             <article className="cv-timeline-item" key={item.title}>
@@ -183,18 +210,14 @@ export default function CvPage({ data }: { data: CvData }) {
                 <div className="cv-item-title">{item.title}</div>
                 <div className="cv-item-date">{item.date}</div>
               </div>
-              <ul className="cv-bullets">
-                {item.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
+              <BulletList items={item.bullets} />
             </article>
           ))}
         </div>
       </section>
 
       <section className="cv-section" id="section-education">
-        <SectionTitle>HỌC VẤN</SectionTitle>
+        <SectionTitle>{labels.sections.education}</SectionTitle>
         <div className="cv-education">
           <div className="cv-item-top">
             <div className="cv-item-title">{data.education.school}</div>
@@ -206,13 +229,38 @@ export default function CvPage({ data }: { data: CvData }) {
       </section>
 
       <section className="cv-section" id="section-soft-skills">
-        <SectionTitle>KỸ NĂNG MỀM</SectionTitle>
-        <ul className="cv-bullets">
-          {data.softSkills.map((skill) => (
-            <li key={skill}>{skill}</li>
-          ))}
-        </ul>
+        <SectionTitle>{labels.sections.softSkills}</SectionTitle>
+        <BulletList items={data.softSkills} />
       </section>
+
+      <footer className="cv-footer">
+        <div>
+          <h2 className="cv-footer-title">{labels.footerTitle}</h2>
+          <p className="cv-footer-subtitle">{labels.footerSubtitle}</p>
+        </div>
+        <div className="cv-footer-links" aria-label={labels.socialAria}>
+          <a className="cv-footer-link" href={`mailto:${data.header.email}`}>
+            <IconMail className="cv-footer-icon" />
+            <span>{labels.footerEmail}: {data.header.email}</span>
+          </a>
+          <a className="cv-footer-link" href={toTelHref(data.header.zaloPhone)}>
+            <IconZaloCall className="cv-footer-icon" />
+            <span>{labels.footerZalo}: {data.header.zaloPhone}</span>
+          </a>
+          <a className="cv-footer-link" href={data.header.github} target="_blank" rel="noopener noreferrer">
+            <IconGitHub className="cv-footer-icon" />
+            <span>GitHub</span>
+          </a>
+          <a className="cv-footer-link" href={data.header.facebook} target="_blank" rel="noopener noreferrer">
+            <IconFacebook className="cv-footer-icon" />
+            <span>Facebook</span>
+          </a>
+          <a className="cv-footer-link" href={data.header.youtube} target="_blank" rel="noopener noreferrer">
+            <IconYouTube className="cv-footer-icon" />
+            <span>YouTube</span>
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }

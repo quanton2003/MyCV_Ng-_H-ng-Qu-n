@@ -1,9 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import CvNav from './cv/CvNav'
 import CvPage from './cv/CvPage'
-import { cvData } from './cv/cvData'
+import { cvDataByLanguage, cvLabels, type CvLanguage } from './cv/cvData'
 
 export default function App() {
+  const [language, setLanguage] = useState<CvLanguage>('vi')
+  const labels = cvLabels[language]
+  const data = cvDataByLanguage[language]
+
   useEffect(() => {
     try {
       const source = new URLSearchParams(window.location.search).get('from') || 'trực tiếp'
@@ -22,9 +26,13 @@ export default function App() {
 
   return (
     <div className="app-layout">
-      <CvNav />
+      <CvNav
+        language={language}
+        labels={labels}
+        onToggleLanguage={() => setLanguage((current) => (current === 'vi' ? 'en' : 'vi'))}
+      />
       <main className="app-main">
-        <CvPage data={cvData} />
+        <CvPage data={data} labels={labels} />
       </main>
     </div>
   )

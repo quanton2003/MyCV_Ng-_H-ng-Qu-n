@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import type { CvLabels, CvLanguage } from './cvData'
 
 const NAV_ORDER = [
   'cv',
@@ -10,20 +11,31 @@ const NAV_ORDER = [
   'section-soft-skills',
 ] as const
 
-const NAV_ITEMS: { id: (typeof NAV_ORDER)[number]; label: string }[] = [
-  { id: 'cv', label: 'Đầu trang' },
-  { id: 'section-summary', label: 'Tóm tắt' },
-  { id: 'section-skills', label: 'Kỹ năng' },
-  { id: 'section-experience', label: 'Kinh nghiệm' },
-  { id: 'section-projects', label: 'Dự án' },
-  { id: 'section-education', label: 'Học vấn' },
-  { id: 'section-soft-skills', label: 'Kỹ năng mềm' },
-]
+type NavId = (typeof NAV_ORDER)[number]
 
 const NAV_HEIGHT = 56
 
-export default function CvNav() {
+type CvNavProps = {
+  language: CvLanguage
+  labels: CvLabels
+  onToggleLanguage: () => void
+}
+
+export default function CvNav({ language, labels, onToggleLanguage }: CvNavProps) {
   const [activeId, setActiveId] = useState<string>('cv')
+
+  const navItems = useMemo<{ id: NavId; label: string }[]>(
+    () => [
+      { id: 'cv', label: labels.nav.top },
+      { id: 'section-summary', label: labels.nav.summary },
+      { id: 'section-skills', label: labels.nav.skills },
+      { id: 'section-experience', label: labels.nav.experience },
+      { id: 'section-projects', label: labels.nav.projects },
+      { id: 'section-education', label: labels.nav.education },
+      { id: 'section-soft-skills', label: labels.nav.softSkills },
+    ],
+    [labels],
+  )
 
   useEffect(() => {
     const updateActive = () => {
@@ -59,9 +71,9 @@ export default function CvNav() {
   }, [])
 
   return (
-    <nav className="cv-nav" aria-label="Điều hướng CV">
+    <nav className="cv-nav" aria-label={labels.navAria}>
       <div className="cv-nav-inner">
-        <a className="cv-nav-brand" href="#cv" aria-label="Ngô Hồng Quân - về đầu trang">
+        <a className="cv-nav-brand" href="#cv" aria-label={labels.brandAria}>
           <img
             className="cv-nav-logo"
             src="/favicon.png?v=8"
@@ -72,16 +84,26 @@ export default function CvNav() {
           />
           <span className="cv-nav-title">Ngô Hồng Quân</span>
         </a>
-        <div className="cv-nav-links">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`cv-nav-link ${activeId === item.id ? 'cv-nav-link--active' : ''}`}
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className="cv-nav-actions">
+          <div className="cv-nav-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`cv-nav-link ${activeId === item.id ? 'cv-nav-link--active' : ''}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <button
+            className="cv-language-toggle"
+            type="button"
+            onClick={onToggleLanguage}
+            aria-label={language === 'vi' ? 'Switch CV to English' : 'Chuyển CV sang tiếng Việt'}
+          >
+            {labels.switchLabel}
+          </button>
         </div>
       </div>
     </nav>
