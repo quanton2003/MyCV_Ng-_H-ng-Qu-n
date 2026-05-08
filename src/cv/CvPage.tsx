@@ -110,61 +110,79 @@ export default function CvPage({ data, labels }: { data: CvData; labels: CvLabel
 
           <div className="cv-contact">
             <span>{data.header.location}</span>
-            <span className="cv-sep">|</span>
-            <span>Zalo: {data.header.zaloPhone}</span>
-            <span className="cv-sep">|</span>
-            <a className="cv-link" href={`mailto:${data.header.email}`}>
-              {data.header.email}
-            </a>
+            {data.header.zaloPhone && (
+              <>
+                <span className="cv-sep">|</span>
+                <span>Zalo: {data.header.zaloPhone}</span>
+              </>
+            )}
+            {data.header.email && (
+              <>
+                <span className="cv-sep">|</span>
+                <a className="cv-link" href={`mailto:${data.header.email}`}>
+                  {data.header.email}
+                </a>
+              </>
+            )}
           </div>
 
           <div className="cv-social" role="group" aria-label={labels.socialAria}>
-            <a
-              className="cv-social-link"
-              href={`mailto:${data.header.email}`}
-              aria-label={`${labels.emailAria} ${data.header.email}`}
-              title="Email"
-            >
-              <IconMail className="cv-social-icon" />
-            </a>
-            <a
-              className="cv-social-link"
-              href={data.header.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={labels.youtubeAria}
-              title="YouTube"
-            >
-              <IconYouTube className="cv-social-icon" />
-            </a>
-            <a
-              className="cv-social-link"
-              href={toTelHref(data.header.zaloPhone)}
-              aria-label={`${labels.zaloAria} ${data.header.zaloPhone}`}
-              title={labels.zaloTitle}
-            >
-              <IconZaloCall className="cv-social-icon" />
-            </a>
-            <a
-              className="cv-social-link"
-              href={data.header.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub - quanton2003"
-              title="GitHub"
-            >
-              <IconGitHub className="cv-social-icon" />
-            </a>
-            <a
-              className="cv-social-link"
-              href={data.header.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              title="Facebook"
-            >
-              <IconFacebook className="cv-social-icon" />
-            </a>
+            {data.header.email && (
+              <a
+                className="cv-social-link"
+                href={`mailto:${data.header.email}`}
+                aria-label={`${labels.emailAria} ${data.header.email}`}
+                title="Email"
+              >
+                <IconMail className="cv-social-icon" />
+              </a>
+            )}
+            {data.header.youtube && (
+              <a
+                className="cv-social-link"
+                href={data.header.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={labels.youtubeAria}
+                title="YouTube"
+              >
+                <IconYouTube className="cv-social-icon" />
+              </a>
+            )}
+            {data.header.zaloPhone && (
+              <a
+                className="cv-social-link"
+                href={toTelHref(data.header.zaloPhone)}
+                aria-label={`${labels.zaloAria} ${data.header.zaloPhone}`}
+                title={labels.zaloTitle}
+              >
+                <IconZaloCall className="cv-social-icon" />
+              </a>
+            )}
+            {data.header.github && (
+              <a
+                className="cv-social-link"
+                href={data.header.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`GitHub - ${data.header.name}`}
+                title="GitHub"
+              >
+                <IconGitHub className="cv-social-icon" />
+              </a>
+            )}
+            {data.header.facebook && (
+              <a
+                className="cv-social-link"
+                href={data.header.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                title="Facebook"
+              >
+                <IconFacebook className="cv-social-icon" />
+              </a>
+            )}
           </div>
         </div>
       </header>
@@ -232,35 +250,6 @@ export default function CvPage({ data, labels }: { data: CvData; labels: CvLabel
         <SectionTitle>{labels.sections.softSkills}</SectionTitle>
         <BulletList items={data.softSkills} />
       </section>
-
-      <footer className="cv-footer">
-        <div>
-          <h2 className="cv-footer-title">{labels.footerTitle}</h2>
-          <p className="cv-footer-subtitle">{labels.footerSubtitle}</p>
-        </div>
-        <div className="cv-footer-links" aria-label={labels.socialAria}>
-          <a className="cv-footer-link" href={`mailto:${data.header.email}`}>
-            <IconMail className="cv-footer-icon" />
-            <span>{labels.footerEmail}: {data.header.email}</span>
-          </a>
-          <a className="cv-footer-link" href={toTelHref(data.header.zaloPhone)}>
-            <IconZaloCall className="cv-footer-icon" />
-            <span>{labels.footerZalo}: {data.header.zaloPhone}</span>
-          </a>
-          <a className="cv-footer-link" href={data.header.github} target="_blank" rel="noopener noreferrer">
-            <IconGitHub className="cv-footer-icon" />
-            <span>GitHub</span>
-          </a>
-          <a className="cv-footer-link" href={data.header.facebook} target="_blank" rel="noopener noreferrer">
-            <IconFacebook className="cv-footer-icon" />
-            <span>Facebook</span>
-          </a>
-          <a className="cv-footer-link" href={data.header.youtube} target="_blank" rel="noopener noreferrer">
-            <IconYouTube className="cv-footer-icon" />
-            <span>YouTube</span>
-          </a>
-        </div>
-      </footer>
     </div>
   )
 }

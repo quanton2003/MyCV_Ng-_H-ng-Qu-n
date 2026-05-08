@@ -1,392 +1,267 @@
-export type CvTextBlock = {
-  title: string;
-  bullets: string[];
-};
-
 export type CvSkillGroup = {
-  label: string;
-  items: string[];
-};
+  label: string
+  items: string[]
+}
 
 export type CvTimelineItem = {
-  title: string;
-  date: string;
-  bullets: string[];
-};
+  title: string
+  date: string
+  bullets: string[]
+}
 
 export type CvData = {
   header: {
-    name: string;
-    title: string;
-    location: string;
-    email: string;
-    github: string;
-    facebook: string;
-    youtube: string;
-    /** So Zalo, dung cho lien ket goi tel: */
-    zaloPhone: string;
-  };
-  summary: string;
-  skills: CvSkillGroup[];
-  experience: CvTimelineItem[];
-  projects: CvTimelineItem[];
+    name: string
+    title: string
+    location: string
+    email: string
+    github: string
+    facebook: string
+    youtube: string
+    zaloPhone: string
+  }
+  summary: string
+  skills: CvSkillGroup[]
+  experience: CvTimelineItem[]
+  projects: CvTimelineItem[]
   education: {
-    school: string;
-    date: string;
-    major: string;
-    gpa: string;
-  };
-  softSkills: string[];
-};
+    school: string
+    date: string
+    major: string
+    gpa: string
+  }
+  softSkills: string[]
+}
 
-export type CvLanguage = "vi" | "en";
+export type CvLanguage = 'vi' | 'en'
 
 export type CvLabels = {
-  navAria: string;
-  brandAria: string;
-  socialAria: string;
-  emailAria: string;
-  youtubeAria: string;
-  zaloAria: string;
-  zaloTitle: string;
-  switchLabel: string;
-  footerTitle: string;
-  footerSubtitle: string;
-  footerEmail: string;
-  footerZalo: string;
+  navAria: string
+  brandAria: string
+  socialAria: string
+  emailAria: string
+  youtubeAria: string
+  zaloAria: string
+  zaloTitle: string
+  switchLabel: string
   nav: {
-    top: string;
-    summary: string;
-    skills: string;
-    experience: string;
-    projects: string;
-    education: string;
-    softSkills: string;
-  };
+    top: string
+    summary: string
+    skills: string
+    experience: string
+    projects: string
+    education: string
+    softSkills: string
+  }
   sections: {
-    summary: string;
-    skills: string;
-    experience: string;
-    projects: string;
-    education: string;
-    softSkills: string;
-  };
-};
+    summary: string
+    skills: string
+    experience: string
+    projects: string
+    education: string
+    softSkills: string
+  }
+}
 
 export const cvLabels: Record<CvLanguage, CvLabels> = {
   vi: {
-    navAria: "Điều hướng CV",
-    brandAria: "Ngô Hồng Quân - về đầu trang",
-    socialAria: "Liên hệ và mạng xã hội",
-    emailAria: "Gửi email tới",
-    youtubeAria: "Kênh YouTube",
-    zaloAria: "Gọi Zalo",
-    zaloTitle: "Gọi Zalo",
-    switchLabel: "English",
-    footerTitle: "Thông tin liên hệ",
-    footerSubtitle: "Bạn có thể liên hệ với tôi qua các kênh dưới đây.",
-    footerEmail: "Email",
-    footerZalo: "Zalo",
+    navAria: 'Dieu huong CV',
+    brandAria: 'Ve dau trang',
+    socialAria: 'Lien he va mang xa hoi',
+    emailAria: 'Gui email toi',
+    youtubeAria: 'Kenh YouTube',
+    zaloAria: 'Goi Zalo',
+    zaloTitle: 'Goi Zalo',
+    switchLabel: 'English',
     nav: {
-      top: "Đầu trang",
-      summary: "Tóm tắt",
-      skills: "Kỹ năng",
-      experience: "Kinh nghiệm",
-      projects: "Dự án",
-      education: "Học vấn",
-      softSkills: "Kỹ năng mềm",
+      top: 'Dau trang',
+      summary: 'Tom tat',
+      skills: 'Ky nang',
+      experience: 'Kinh nghiem',
+      projects: 'Du an',
+      education: 'Hoc van',
+      softSkills: 'Ky nang mem',
     },
     sections: {
-      summary: "TÓM TẮT BẢN THÂN",
-      skills: "KỸ NĂNG",
-      experience: "KINH NGHIỆM LÀM VIỆC",
-      projects: "DỰ ÁN CÁ NHÂN",
-      education: "HỌC VẤN",
-      softSkills: "KỸ NĂNG MỀM",
+      summary: 'TOM TAT BAN THAN',
+      skills: 'KY NANG',
+      experience: 'KINH NGHIEM LAM VIEC',
+      projects: 'DU AN',
+      education: 'HOC VAN',
+      softSkills: 'KY NANG MEM',
     },
   },
   en: {
-    navAria: "CV navigation",
-    brandAria: "Ngô Hồng Quân - back to top",
-    socialAria: "Contact and social links",
-    emailAria: "Send email to",
-    youtubeAria: "YouTube channel",
-    zaloAria: "Call Zalo",
-    zaloTitle: "Call Zalo",
-    switchLabel: "Tiếng Việt",
-    footerTitle: "Contact information",
-    footerSubtitle: "You can reach me through the channels below.",
-    footerEmail: "Email",
-    footerZalo: "Zalo",
+    navAria: 'CV navigation',
+    brandAria: 'Back to top',
+    socialAria: 'Contact and social links',
+    emailAria: 'Send email to',
+    youtubeAria: 'YouTube channel',
+    zaloAria: 'Call Zalo',
+    zaloTitle: 'Call Zalo',
+    switchLabel: 'Tieng Viet',
     nav: {
-      top: "Top",
-      summary: "Summary",
-      skills: "Skills",
-      experience: "Experience",
-      projects: "Projects",
-      education: "Education",
-      softSkills: "Soft skills",
+      top: 'Top',
+      summary: 'Summary',
+      skills: 'Skills',
+      experience: 'Experience',
+      projects: 'Projects',
+      education: 'Education',
+      softSkills: 'Soft skills',
     },
     sections: {
-      summary: "PROFESSIONAL SUMMARY",
-      skills: "TECHNICAL SKILLS",
-      experience: "WORK EXPERIENCE",
-      projects: "PERSONAL PROJECTS",
-      education: "EDUCATION",
-      softSkills: "SOFT SKILLS",
+      summary: 'PROFESSIONAL SUMMARY',
+      skills: 'TECHNICAL SKILLS',
+      experience: 'WORK EXPERIENCE',
+      projects: 'PROJECTS',
+      education: 'EDUCATION',
+      softSkills: 'SOFT SKILLS',
     },
   },
-};
+}
 
-const sharedHeader: CvData["header"] = {
-  name: "Ngô Hồng Quân",
-  title: "Backend Developer",
-  location: "Hanoi, Vietnam",
-  email: "quanyyyb@gmail.com",
-  github: "https://github.com/quanton2003",
-  facebook: "https://www.facebook.com/developer.quandepzai",
-  youtube: "https://www.youtube.com/@ngohongquan4962",
-  zaloPhone: "0343174165",
-};
+const sampleHeader: CvData['header'] = {
+  name: 'Your Name',
+  title: 'Your Target Role',
+  location: 'Your City, Country',
+  email: 'you@example.com',
+  github: 'https://github.com/your-username',
+  facebook: '',
+  youtube: '',
+  zaloPhone: '',
+}
 
 export const cvDataByLanguage: Record<CvLanguage, CvData> = {
   vi: {
-    header: sharedHeader,
+    header: sampleHeader,
     summary:
-      "Lập trình viên Web với nền tảng JavaScript và kinh nghiệm phát triển ứng dụng Full Stack sử dụng MERN Stack (MongoDB, Express.js, React.js, Node.js). Có kinh nghiệm xây dựng RESTful API, hệ thống xác thực người dùng và thiết kế cơ sở dữ liệu cho các ứng dụng web. Đã tham gia phát triển các dự án thực tế như nền tảng thương mại điện tử, hệ thống tự động hóa nội dung sử dụng AI. Mong muốn phát triển chuyên sâu về Backend và tham gia xây dựng các sản phẩm web có khả năng mở rộng và hiệu năng cao.",
+      'Viet mot doan tom tat ngan gon ve kinh nghiem, the manh ky thuat, linh vuc ban muon phat trien va gia tri ban co the mang lai cho cong ty. Nen giu doan nay trong 3-5 cau de nha tuyen dung doc nhanh.',
     skills: [
-      { label: "LANGUAGES", items: ["JavaScript", "HTML", "CSS", "PHP"] },
-      {
-        label: "FRONTEND",
-        items: ["React.js", "Next.js", "Redux Toolkit", "Bootstrap"],
-      },
-      { label: "BACKEND", items: ["Node.js", "Express.js", "Laravel"] },
-      { label: "DATABASES", items: ["MongoDB", "MySQL", "PostgreSQL"] },
-      {
-        label: "TOOLS",
-        items: ["Git", "GitHub", "Gitflow", "Deployment (Vercel/Render)"],
-      },
-      {
-        label: "OTHER",
-        items: ["RESTful API Design", "JWT Authentication", "API Integration"],
-      },
+      { label: 'LANGUAGES', items: ['JavaScript', 'TypeScript', 'HTML', 'CSS'] },
+      { label: 'FRONTEND', items: ['React.js', 'Next.js', 'Redux Toolkit'] },
+      { label: 'BACKEND', items: ['Node.js', 'Express.js', 'RESTful API'] },
+      { label: 'DATABASES', items: ['MongoDB', 'PostgreSQL', 'MySQL'] },
+      { label: 'TOOLS', items: ['Git', 'GitHub', 'Docker', 'Vercel'] },
+      { label: 'OTHER', items: ['Authentication', 'API Integration', 'Testing'] },
     ],
     experience: [
       {
-        title: "AI Automation - ECOSINH",
-        date: "05/2025 - 01/2026",
+        title: 'Job Title - Company Name',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Thiết kế và xây dựng workflow tự động tạo nội dung mạng xã hội sử dụng AI, tự động lấy thông tin từ các trang báo để tổng hợp tin mới và chống trùng nội dung đã viết.",
-          "Tích hợp các API AI để tự động tạo nội dung văn bản và hình ảnh.",
-          "Xây dựng pipeline tự động gồm các bước: nghiên cứu nội dung, tạo bài viết, tạo hình ảnh và đăng bài.",
-          "Tối ưu quy trình giúp giảm đáng kể thời gian sản xuất nội dung thủ công.",
-          "Làm việc với các công cụ automation và API để kết nối nhiều dịch vụ trong cùng một workflow.",
-          "Tối ưu giao diện trang web và sử dụng AI để cải thiện hình ảnh trên website.",
-          "Website: https://ecosinh.com",
+          'Mo ta nhiem vu chinh bang mot cau ro rang, tap trung vao tac dong thuc te.',
+          'Neu cong nghe, quy trinh hoac he thong ban da truc tiep xay dung hoac cai tien.',
+          'Dua so lieu neu co, vi du: giam 30% thoi gian xu ly hoac tang 20% hieu nang.',
         ],
       },
       {
-        title: "Intern Developer - Solana Superteam",
-        date: "09/2024 - 12/2024",
+        title: 'Intern Developer - Example Company',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Tham gia phát triển ứng dụng web cho phép người dùng chat và chơi trò chơi Bầu Cua sử dụng token Solana.",
-          "Xây dựng backend API bằng Laravel và MySQL để quản lý người dùng và dữ liệu trò chơi.",
-          "Phát triển giao diện frontend bằng HTML và CSS.",
-          "Tích hợp blockchain Solana để xử lý giao dịch trong hệ thống.",
-          "Phối hợp với các thành viên trong nhóm để hoàn thiện các tính năng chính của ứng dụng.",
-          "Ứng dụng được ban giám khảo và các team bình chọn là giải độc đáo mở riêng cho team.",
-        ],
-      },
-      {
-        title: "IT Support - Healthcare Software - EHC GROUP",
-        date: "03/2026 - 07/2026",
-        bullets: [
-          "Hỗ trợ kỹ thuật cho y bác sĩ và nhân viên bệnh viện trong quá trình sử dụng phần mềm HIS/LIS.",
-          "Viết báo cáo về các lỗi và yêu cầu của khách hàng tại bệnh viện.",
-          "Cấu hình báo cáo các phiếu hệ thống HIS của bệnh viện.",
-          "Tiếp nhận và xử lý lỗi hệ thống, hỗ trợ vận hành quy trình khám chữa bệnh.",
-          "Đào tạo và hướng dẫn người dùng sử dụng phần mềm.",
-          "Phối hợp với team dev để kiểm tra và fix lỗi nghiệp vụ.",
+          'Tham gia phat trien tinh nang cho ung dung web voi vai tro cu the.',
+          'Lam viec voi API, database va giao dien nguoi dung theo yeu cau san pham.',
+          'Phoi hop voi team de review code, sua loi va hoan thien tinh nang.',
         ],
       },
     ],
     projects: [
       {
-        title: "E-Commerce Platform - Personal Project",
-        date: "09/2023 - 01/2024",
+        title: 'Project Name - Personal Project',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Phát triển nền tảng thương mại điện tử full-stack theo kiến trúc MERN Stack, tập trung vào trải nghiệm người dùng và khả năng mở rộng hệ thống.",
-          "Thiết kế và xây dựng RESTful API phục vụ quản lý người dùng, sản phẩm, giỏ hàng và đơn hàng.",
-          "Triển khai xác thực và phân quyền bằng JWT Authentication cho người dùng và quản trị viên.",
-          "Xây dựng cơ sở dữ liệu MongoDB với các collection và model phục vụ quản lý dữ liệu người dùng, sản phẩm và đơn hàng.",
-          "Phát triển giao diện người dùng và hệ thống quản trị bằng React.js kết hợp Redux Toolkit để quản lý state hiệu quả.",
-          "Tích hợp các chức năng quản trị như quản lý sản phẩm, cập nhật trạng thái đơn hàng và theo dõi hoạt động hệ thống.",
-          "Tham gia xử lý logic backend, kết nối API với frontend và tối ưu luồng dữ liệu giữa các thành phần.",
-          "GitHub Backend: https://github.com/quanton2003 | Frontend: https://github.com/quanton2003/front-end",
+          'Mo ta bai toan san pham va vai tro cua ban trong du an.',
+          'Liet ke cac tinh nang chinh, cong nghe su dung va ket qua dat duoc.',
+          'GitHub: https://github.com/your-username/project-name',
         ],
       },
       {
-        title: "AI Workflow System (n8n) - ECOSINH",
-        date: "05/2025 - 01/2026",
+        title: 'Team Project - Product Name',
+        date: 'YYYY',
         bullets: [
-          "Phát triển hệ thống tự động hóa đăng bài Facebook ứng dụng AI nhằm tối ưu quy trình sản xuất nội dung số.",
-          "Thiết kế workflow tự động từ khâu lấy chủ đề, tạo nội dung, tạo hình ảnh đến đăng bài lên Facebook theo quy trình khép kín.",
-          "Tích hợp các API AI để hỗ trợ sinh nội dung và hình ảnh tự động, giúp tăng tốc độ tạo bài viết và đảm bảo tính đồng bộ.",
-          "Xây dựng cơ chế kiểm tra và xử lý nội dung trùng lặp trước khi đăng nhằm nâng cao chất lượng và hạn chế spam nội dung.",
-          "Tối ưu quy trình xử lý dữ liệu và tự động hóa các tác vụ lặp lại, giúp giảm thời gian sản xuất nội dung so với phương pháp thủ công.",
-          "Tham gia triển khai logic workflow, kết nối API và xử lý luồng dữ liệu giữa các thành phần trong hệ thống.",
-        ],
-      },
-      {
-        title:
-          "Heart Daily - Website thương mại điện tử thời trang (dự án nhóm)",
-        date: "2024",
-        bullets: [
-          "Tham gia phát triển website thương mại điện tử thời trang với vai trò Backend Developer.",
-          "Xây dựng và xử lý các chức năng backend bằng PHP Laravel.",
-          "Phát triển chức năng đăng ký, đăng nhập và phân quyền người dùng.",
-          "Xây dựng hệ thống mua sắm sản phẩm, thanh toán online và đánh giá sản phẩm.",
-          "Phát triển trang quản trị với các chức năng thống kê, quản lý sản phẩm, quản lý tài khoản và quản lý tồn kho.",
-          "Hỗ trợ CRUD voucher và phân quyền Super Admin, Admin.",
-          "Công nghệ sử dụng: HTML5, CSS3, PHP (Laravel), JavaScript, Bootstrap, Node.js, MySQL.",
-          "GitHub: https://github.com/quanton2003/Du-an-heart-daily",
+          'Mo ta du an nhom va pham vi cong viec ban phu trach.',
+          'Neu cach ban thiet ke API, database, UI hoac quy trinh deploy.',
+          'Demo: https://example.com',
         ],
       },
     ],
     education: {
-      school: "FPT Polytechnic College",
-      date: "07/2022 - 05/2025",
-      major: "Chuyên ngành: Web Programming (Web Backend)",
-      gpa: "GPA: 3.5",
+      school: 'School or University Name',
+      date: 'MM/YYYY - MM/YYYY',
+      major: 'Major: Your Major',
+      gpa: 'GPA: Optional',
     },
     softSkills: [
-      "Có khả năng làm việc nhóm và phối hợp hiệu quả trong môi trường dự án.",
-      "Chủ động học hỏi và nhanh chóng thích nghi với công nghệ, môi trường làm việc mới.",
-      "Có tư duy logic và khả năng phân tích, xử lý vấn đề trong công việc.",
-      "Có tinh thần trách nhiệm, hỗ trợ teamwork và đảm bảo tiến độ công việc.",
-      "Có khả năng tự nghiên cứu tài liệu kỹ thuật và tìm giải pháp cho vấn đề phát sinh.",
-      "Quản lý thời gian và sắp xếp công việc cá nhân hiệu quả.",
-      "Có khả năng đọc hiểu tài liệu kỹ thuật tiếng Anh và giao tiếp tiếng Anh cơ bản trong môi trường làm việc.",
+      'Lam viec nhom va giao tiep ro rang trong moi truong du an.',
+      'Chu dong hoc cong nghe moi va thich nghi voi yeu cau thay doi.',
+      'Phan tich van de, tim nguyen nhan va de xuat giai phap thuc te.',
+      'Quan ly thoi gian va uu tien cong viec theo muc tieu san pham.',
     ],
   },
   en: {
-    header: sharedHeader,
+    header: sampleHeader,
     summary:
-      "Web Developer with a JavaScript foundation and experience building full-stack applications with the MERN Stack (MongoDB, Express.js, React.js, Node.js). Experienced in building RESTful APIs, user authentication systems, and database designs for web applications. Contributed to real-world projects such as an e-commerce platform and an AI-powered content automation system. Seeking to grow deeper in Backend development and contribute to scalable, high-performance web products.",
+      'Write a concise professional summary about your experience, technical strengths, target role, and the value you can bring to a team. Keep this section within 3-5 sentences so recruiters can scan it quickly.',
     skills: [
-      { label: "LANGUAGES", items: ["JavaScript", "HTML", "CSS", "PHP"] },
-      {
-        label: "FRONTEND",
-        items: ["React.js", "Next.js", "Redux Toolkit", "Bootstrap"],
-      },
-      { label: "BACKEND", items: ["Node.js", "Express.js", "Laravel"] },
-      { label: "DATABASES", items: ["MongoDB", "MySQL", "PostgreSQL"] },
-      {
-        label: "TOOLS",
-        items: ["Git", "GitHub", "Gitflow", "Deployment (Vercel/Render)"],
-      },
-      {
-        label: "OTHER",
-        items: ["RESTful API Design", "JWT Authentication", "API Integration"],
-      },
+      { label: 'LANGUAGES', items: ['JavaScript', 'TypeScript', 'HTML', 'CSS'] },
+      { label: 'FRONTEND', items: ['React.js', 'Next.js', 'Redux Toolkit'] },
+      { label: 'BACKEND', items: ['Node.js', 'Express.js', 'RESTful API'] },
+      { label: 'DATABASES', items: ['MongoDB', 'PostgreSQL', 'MySQL'] },
+      { label: 'TOOLS', items: ['Git', 'GitHub', 'Docker', 'Vercel'] },
+      { label: 'OTHER', items: ['Authentication', 'API Integration', 'Testing'] },
     ],
     experience: [
       {
-        title: "AI Automation - ECOSINH",
-        date: "05/2025 - 01/2026",
+        title: 'Job Title - Company Name',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Designed and built an AI-powered workflow to automatically create social media content, collect information from news sites, summarize new articles, and prevent duplicate content.",
-          "Integrated AI APIs to generate text and image content automatically.",
-          "Built an automated pipeline covering content research, article generation, image creation, and publishing.",
-          "Optimized the process and significantly reduced manual content production time.",
-          "Worked with automation tools and APIs to connect multiple services in one workflow.",
-          "Improved the website interface and used AI to enhance visuals on the website.",
-          "Website: https://ecosinh.com",
+          'Describe your main responsibility in one clear sentence, focusing on real impact.',
+          'Mention the technology, workflow, or system you directly built or improved.',
+          'Add measurable results when possible, such as reducing processing time or improving performance.',
         ],
       },
       {
-        title: "Intern Developer - Solana Superteam",
-        date: "09/2024 - 12/2024",
+        title: 'Intern Developer - Example Company',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Contributed to a web application that allowed users to chat and play the Bau Cua game using Solana tokens.",
-          "Built backend APIs with Laravel and MySQL to manage users and game data.",
-          "Developed frontend interfaces with HTML and CSS.",
-          "Integrated the Solana blockchain to process in-system transactions.",
-          "Collaborated with team members to complete the main application features.",
-          "The application was selected by judges and other teams for a special team award for originality.",
-        ],
-      },
-      {
-        title: "IT Support - Healthcare Software - EHC GROUP",
-        date: "03/2026 - 07/2026",
-        bullets: [
-          "Provided technical support for doctors, nurses, and hospital staff using HIS/LIS software.",
-          "Prepared reports on bugs and customer requirements at the hospital.",
-          "Configured HIS system form reports for hospital operations.",
-          "Received and resolved system issues while supporting hospital examination and treatment workflows.",
-          "Trained and guided users on how to use the software.",
-          "Coordinated with the development team to test and fix business workflow issues.",
+          'Contributed to web application features with a clearly defined role.',
+          'Worked with APIs, databases, and user interfaces based on product requirements.',
+          'Collaborated with the team on code review, bug fixing, and feature completion.',
         ],
       },
     ],
     projects: [
       {
-        title: "E-Commerce Platform - Personal Project",
-        date: "09/2023 - 01/2024",
+        title: 'Project Name - Personal Project',
+        date: 'MM/YYYY - MM/YYYY',
         bullets: [
-          "Developed a full-stack e-commerce platform using the MERN Stack architecture, focusing on user experience and system scalability.",
-          "Designed and built RESTful APIs for user, product, cart, and order management.",
-          "Implemented authentication and authorization with JWT Authentication for users and administrators.",
-          "Designed a MongoDB database with collections and models for managing users, products, and orders.",
-          "Developed the user interface and admin system with React.js and Redux Toolkit for efficient state management.",
-          "Integrated admin features such as product management, order status updates, and system activity tracking.",
-          "Handled backend logic, connected APIs with the frontend, and optimized data flow between components.",
-          "GitHub Backend: https://github.com/quanton2003 | Frontend: https://github.com/quanton2003/front-end",
+          'Describe the product problem and your role in the project.',
+          'List key features, technologies used, and the outcome of the project.',
+          'GitHub: https://github.com/your-username/project-name',
         ],
       },
       {
-        title: "AI Workflow System (n8n) - ECOSINH",
-        date: "05/2025 - 01/2026",
+        title: 'Team Project - Product Name',
+        date: 'YYYY',
         bullets: [
-          "Developed an AI-powered Facebook posting automation system to optimize the digital content production process.",
-          "Designed an end-to-end automated workflow from topic collection, content generation, and image generation to Facebook publishing.",
-          "Integrated AI APIs to support automatic text and image generation, speeding up article creation and improving consistency.",
-          "Built a duplicate-content checking and handling mechanism before publishing to improve quality and reduce spam.",
-          "Optimized data processing and automated repetitive tasks, reducing production time compared with manual methods.",
-          "Implemented workflow logic, connected APIs, and handled data flow between system components.",
-        ],
-      },
-      {
-        title: "Heart Daily - Fashion E-Commerce Website (Team Project)",
-        date: "2024",
-        bullets: [
-          "Contributed to a fashion e-commerce website as a Backend Developer.",
-          "Built and handled backend features with PHP Laravel.",
-          "Developed registration, login, and user authorization features.",
-          "Built shopping, online payment, and product review features.",
-          "Developed an admin dashboard with statistics, product management, account management, and inventory management features.",
-          "Supported voucher CRUD operations and Super Admin/Admin authorization.",
-          "Technologies used: HTML5, CSS3, PHP (Laravel), JavaScript, Bootstrap, Node.js, MySQL.",
-          "GitHub: https://github.com/quanton2003/Du-an-heart-daily",
+          'Describe the team project and the scope of work you owned.',
+          'Mention how you designed the API, database, UI, or deployment workflow.',
+          'Demo: https://example.com',
         ],
       },
     ],
     education: {
-      school: "FPT Polytechnic College",
-      date: "07/2022 - 05/2025",
-      major: "Major: Web Programming (Web Backend)",
-      gpa: "GPA: 3.5",
+      school: 'School or University Name',
+      date: 'MM/YYYY - MM/YYYY',
+      major: 'Major: Your Major',
+      gpa: 'GPA: Optional',
     },
     softSkills: [
-      "Able to work in teams and coordinate effectively in project environments.",
-      "Proactive in learning and quick to adapt to new technologies and work environments.",
-      "Strong logical thinking and problem analysis skills.",
-      "Responsible, supportive in teamwork, and focused on meeting deadlines.",
-      "Able to independently research technical documentation and find solutions for arising issues.",
-      "Effective at time management and organizing personal work.",
-      "Able to read English technical documentation and communicate in basic English in a work environment.",
+      'Team collaboration and clear communication in project environments.',
+      'Proactive learning and quick adaptation to changing requirements.',
+      'Problem analysis, root cause investigation, and practical solution design.',
+      'Time management and prioritization based on product goals.',
     ],
   },
-};
+}
 
-export const cvData = cvDataByLanguage.vi;
+export const cvData = cvDataByLanguage.vi
